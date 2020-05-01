@@ -163,8 +163,10 @@ NSString *KeyCountry = @"country";
             patternString = [string substringFromIndex:3];
             firstPart = [string substringWithRange:NSMakeRange(0, 3)].mutableCopy;
         }
-        
+        NSUInteger i = patternString.length;
         int len = [self getCountryLength:country];
+        if (i > len)
+            patternString = [patternString.copy substringToIndex:len];
         phoneNumber = [self converterPhones:patternString.mutableCopy andCountry: @(len)];
         [firstPart appendString:phoneNumber];
 
